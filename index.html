@@ -17,7 +17,26 @@
 </head>
 
 <body>
-  <!-- ikelti navigacija su nuorodom i home, add-post ir about puslapius -->
+  <!-- navigacija -->
+  <nav class="navbar navbar-expand-sm bg-body-tertiary " data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Posts<strong>CRUD</strong> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" href="add-post.html">Add post</a>
+          <a class="nav-link" href="about.html">About</a>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- /navigacija -->
+
   <div class="container">
     <h1 class="display-2">Welcome</h1>
     <ul class="unlisted myGrid" id="postList">
