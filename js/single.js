@@ -2,7 +2,7 @@
 console.log('single.js file was loaded');
 
 const baseUrl = 'http://localhost:5000';
-const currentPostId = '3083126839342818';
+const currentPostId = '5703187329379835';
 
 // su funkcija parsiusti ir iskonsolinti konretu posta kurio id yra currentPostId
 
