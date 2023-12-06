@@ -49,11 +49,14 @@ function sendNewPostFetch(newPostObj) {
     body: JSON.stringify(newPostObj),
   })
     .then((resp) => {
-      console.log('resp ===', resp);
+      // console.log('resp ===', resp);
       return resp.json();
     })
     .then((ats) => {
       console.log('ats ===', ats);
+      // kai sekme tai naviguojam i home page
+      // nesekmes atveju console kad klaida
+      // atvaizduojam visas klaida klaudu sarase virs formos
     })
     .catch((error) => {
       console.warn('ivyko klaida:', error);
