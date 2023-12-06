@@ -39,6 +39,10 @@
   <div class="container mb-5 mt-2">
     <h1 class="display-2">Create new post</h1>
     <!-- sukurti forma naujam postui sukurti -->
+    <div id="alert" class="alert d-none alert-danger alert-dismissible fade show" role="alert">
+      Formoje yra klaidu
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <form>
       <!-- create a form for new post  -->
       <div class="mb-3">
@@ -47,7 +51,7 @@
       </div>
       <div class="mb-3">
         <label for="image" class="form-label">Image</label>
-        <input type="text" class="form-control" id="image" name="image">
+        <input type="url" class="form-control" id="image" name="image">
       </div>
       <div class="mb-3">
         <label for="author" class="form-label">Author</label>
@@ -66,13 +70,11 @@
         <textarea class="form-control" id="body" name="body" rows="3"></textarea>
       </div>
 
-      <ul id="errorList" class="text-danger">
-        <li>klaida 1 </li>
-        <li>klaida 2 </li>
-      </ul>
+      <ul id="errorList" class="text-danger"> </ul>
 
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
   </div>
 </body>
 

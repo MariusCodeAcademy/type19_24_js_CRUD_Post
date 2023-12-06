@@ -22,6 +22,8 @@ const els = {
   author: document.getElementById('author'),
   tags: document.getElementById('tags'),
   date: document.getElementById('date'),
+  errorList: document.getElementById('errorList'),
+  alert: document.getElementById('alert'),
 };
 console.log('els ===', els);
 
@@ -55,11 +57,38 @@ function sendNewPostFetch(newPostObj) {
     .then((ats) => {
       console.log('ats ===', ats);
       // kai sekme tai naviguojam i home page
-      // nesekmes atveju console kad klaida
-      // atvaizduojam visas klaida klaudu sarase virs formos
+      if (ats.id) {
+        // sekme
+        window.location.href = '/index.html';
+        return;
+      }
+      // jei gavom ne tuscia klaidu masyva
+      if (Array.isArray(ats.error) && ats.error.length > 0) {
+        // klaida
+        console.log('klaida');
+        // nesekmes atveju console log klaidu masyva is back end
+        console.log('ats.error ===', ats.error);
+        // atvaizduojam visas klaida klaudu sarase virs formos
+        setErrrors(ats.error);
+      }
     })
     .catch((error) => {
       console.warn('ivyko klaida:', error);
     });
 }
 // back end
+
+function setErrrors(errorArr) {
+  // isssivalyti klaidu konteineri
+  els.errorList.innerHTML = '';
+  // atvaizduoja kaidas
+  // 1. sukti cikla per klaida
+  errorArr.forEach((errObj) => {
+    // 2. kurti li
+    const liEl = document.createElement('li');
+    liEl.textContent = errObj.message;
+    // 3. patalpinti li
+    els.errorList.append(liEl);
+  });
+  els.alert.classList.remove('d-none');
+}
