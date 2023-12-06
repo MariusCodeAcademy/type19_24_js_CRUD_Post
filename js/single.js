@@ -25,20 +25,19 @@ if (currentPostId === null) {
 
 // su funkcija parsiusti ir iskonsolinti konretu posta kurio id yra currentPostId
 
-function getSinglePost(url) {
+function getSinglePost(url, callback) {
   fetch(url)
     .then((resp) => resp.json())
     .then((postObj) => {
       console.log('postObj ===', postObj);
-
-      fillHtmlPage(postObj);
+      callback(postObj);
     })
     .catch((error) => {
       console.warn('ivyko klaida:', error);
     });
 }
 
-getSinglePost(`${baseUrl}/posts/${currentPostId}`);
+getSinglePost(`${baseUrl}/posts/${currentPostId}`, fillHtmlPage);
 
 function fillHtmlPage(currentPostObj) {
   // supildyti html reikmes is postObj
