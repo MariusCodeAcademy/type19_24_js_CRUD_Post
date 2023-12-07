@@ -56,4 +56,16 @@ function getSetCurrentPostId() {
   }
 }
 
-function fillFormFields(postObj) {}
+function fillFormFields({ image, title, body, author, tags, date }) {
+  // postObj === currentPostObj
+  // paimti info ir postObj ir sudeti i formos laukus
+
+  // const { image, title, body, author, tags, date } = postObj;
+
+  els.image.value = image;
+  els.title.value = title;
+  els.body.value = body;
+  els.author.value = author;
+  els.tags.value = tags.join(', ');
+  els.date.value = date;
+}
