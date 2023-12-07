@@ -13,31 +13,31 @@ const els = {
   dateEl: document.getElementById('date'),
 };
 console.log('els ===', els);
-// gauti id is Url parametru
-const urlParamsObj = new URLSearchParams(window.location.search);
-// console.log('urlParamsObj.get(town) ===', urlParamsObj.get('town'));
-currentPostId = urlParamsObj.get('postId');
-console.log('currentPostId ===', currentPostId);
-
-if (currentPostId === null) {
-  console.warn('Nera post id');
-}
 
 // su funkcija parsiusti ir iskonsolinti konretu posta kurio id yra currentPostId
+flow();
+async function flow() {
+  getSetCurrentPostId();
+  // Gaunam posta
+  const postsArr = await getSinglePost(`${baseUrl}/posts/${currentPostId}`);
+  // console.log('postsArr ===', postsArr);
+  fillHtmlPage(postsArr);
+}
 
-function getSinglePost(url, callback) {
-  fetch(url)
+// Functions
+
+function getSinglePost(url) {
+  return fetch(url)
     .then((resp) => resp.json())
     .then((postObj) => {
-      console.log('postObj ===', postObj);
-      callback(postObj);
+      // console.log('postObj ===', postObj);
+      // callback(postObj);
+      return postObj;
     })
     .catch((error) => {
       console.warn('ivyko klaida:', error);
     });
 }
-
-getSinglePost(`${baseUrl}/posts/${currentPostId}`, fillHtmlPage);
 
 function fillHtmlPage(currentPostObj) {
   // supildyti html reikmes is postObj
@@ -68,4 +68,14 @@ function tagsToHtml(tagsArr) {
   });
 }
 
-// https://www.skelbiu.lt/skelbimai/?autocompleted=1&keywords=&cost_min=100&cost_max=5000&type=1&condition=1&cities=0&distance=0&mainCity=0&se
+function getSetCurrentPostId() {
+  // gauti id is Url parametru
+  const urlParamsObj = new URLSearchParams(window.location.search);
+  // console.log('urlParamsObj.get(town) ===', urlParamsObj.get('town'));
+  currentPostId = urlParamsObj.get('postId');
+  console.log('currentPostId ===', currentPostId);
+
+  if (currentPostId === null) {
+    console.warn('Nera post id');
+  }
+}
