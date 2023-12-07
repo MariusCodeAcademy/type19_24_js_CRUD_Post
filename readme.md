@@ -14,3 +14,7 @@
 6. pateikiant forma siunciam PUT requesta (toks pat kaip Post tik skiriasi metodas)
 7. sekmes atveju naviguojam atgal i single post page to paties posto
 8. nesekmes atveju pranesam apie klaidas
+
+## paskaita 26
+
+Padaryti kad veiktu komentarai
