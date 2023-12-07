@@ -11,6 +11,7 @@ const els = {
   authorEl: document.getElementById('author'),
   tagsEl: document.getElementById('tags'),
   dateEl: document.getElementById('date'),
+  editPostLinkEl: document.getElementById('editPostLink'),
 };
 console.log('els ===', els);
 
@@ -22,6 +23,7 @@ async function flow() {
   const postsArr = await getSinglePost(`${baseUrl}/posts/${currentPostId}`);
   // console.log('postsArr ===', postsArr);
   fillHtmlPage(postsArr);
+  setEditLinkUrl();
 }
 
 // Functions
@@ -78,4 +80,8 @@ function getSetCurrentPostId() {
   if (currentPostId === null) {
     console.warn('Nera post id');
   }
+}
+
+function setEditLinkUrl() {
+  els.editPostLinkEl.href = `/edit-post.html?postId=${currentPostId}`;
 }
