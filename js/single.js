@@ -27,19 +27,6 @@ async function flow() {
 
 // Functions
 
-function getSinglePost(url) {
-  return fetch(url)
-    .then((resp) => resp.json())
-    .then((postObj) => {
-      // console.log('postObj ===', postObj);
-      // callback(postObj);
-      return postObj;
-    })
-    .catch((error) => {
-      console.warn('ivyko klaida:', error);
-    });
-}
-
 function fillHtmlPage(currentPostObj) {
   // supildyti html reikmes is postObj
   els.titleEl.textContent = currentPostObj.title;

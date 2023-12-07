@@ -30,19 +30,6 @@ async function flow() {
   fillFormFields(currentPostObj);
 }
 
-function getSinglePost(url) {
-  return fetch(url)
-    .then((resp) => resp.json())
-    .then((postObj) => {
-      // console.log('postObj ===', postObj);
-      // callback(postObj);
-      return postObj;
-    })
-    .catch((error) => {
-      console.warn('ivyko klaida:', error);
-    });
-}
-
 function getSetCurrentPostId() {
   // gauti id is Url parametru
   const urlParamsObj = new URLSearchParams(window.location.search);
