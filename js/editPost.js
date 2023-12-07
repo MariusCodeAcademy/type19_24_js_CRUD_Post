@@ -56,16 +56,45 @@ function getSetCurrentPostId() {
   }
 }
 
-function fillFormFields({ image, title, body, author, tags, date }) {
+function fillFormFields(postObj) {
   // postObj === currentPostObj
   // paimti info ir postObj ir sudeti i formos laukus
 
-  // const { image, title, body, author, tags, date } = postObj;
+  els.image.value = postObj.image;
+  els.title.value = postObj.title;
+  els.body.value = postObj.body;
+  els.author.value = postObj.author;
+  els.tags.value = postObj.tags.join(', ');
+  els.date.value = postObj.date;
+}
 
-  els.image.value = image;
-  els.title.value = title;
-  els.body.value = body;
-  els.author.value = author;
-  els.tags.value = tags.join(', ');
-  els.date.value = date;
+// formai uzdeti pateikimo pasiklausyma
+els.form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  console.log('pateikta');
+  const updatedPostFieldsObj = {
+    image: els.image.value,
+    title: els.title.value,
+    body: els.body.value,
+    author: els.author.value,
+    tags: els.tags.value.split(',').map((str) => str.trim()),
+    date: els.date.value,
+  };
+  console.log('updatedPostFieldsObj ===', updatedPostFieldsObj);
+  sendUpdatePostFetch(updatedPostFieldsObj);
+});
+
+function sendUpdatePostFetch(updatesObj) {
+  fetch(`${baseUrl}/posts/${currentPostId}`, {
+    method: 'PUT',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(updatesObj),
+  })
+    .then((resp) => resp.json())
+    .then((updateResult) => {
+      console.log('updateResult ===', updateResult);
+    })
+    .catch((error) => {
+      console.warn('sendUpdatePostFetch ivyko klaida:', error);
+    });
 }
