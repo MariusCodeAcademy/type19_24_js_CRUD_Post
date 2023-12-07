@@ -93,8 +93,38 @@ function sendUpdatePostFetch(updatesObj) {
     .then((resp) => resp.json())
     .then((updateResult) => {
       console.log('updateResult ===', updateResult);
+      // sugryzti i single post kai sekme (turim id atsakyme)
+      if (updateResult.id) {
+        window.location.href = `/single-post.html?postId=${currentPostId}&postUpdate=true`;
+        return;
+      }
+      // pranesti apie klaidas kai nesekme
+      // jei gavom ne tuscia klaidu masyva
+      if (Array.isArray(updateResult.error) && updateResult.error.length > 0) {
+        // klaida
+        console.log('klaida');
+        // nesekmes atveju console log klaidu masyva is back end
+        console.log('updateResult.error ===', updateResult.error);
+        // atvaizduojam visas klaida klaudu sarase virs formos
+        setErrrors(updateResult.error);
+      }
     })
     .catch((error) => {
       console.warn('sendUpdatePostFetch ivyko klaida:', error);
     });
+}
+
+function setErrrors(errorArr) {
+  // isssivalyti klaidu konteineri
+  els.errorList.innerHTML = '';
+  // atvaizduoja kaidas
+  // 1. sukti cikla per klaida
+  errorArr.forEach((errObj) => {
+    // 2. kurti li
+    const liEl = document.createElement('li');
+    liEl.textContent = errObj.message;
+    // 3. patalpinti li
+    els.errorList.append(liEl);
+  });
+  els.alert.classList.remove('d-none');
 }
