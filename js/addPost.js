@@ -1,8 +1,6 @@
 'use strict';
 console.log('addPost.js file was loaded');
 
-const baseUrl = 'http://localhost:5000';
-
 // "image","title","body","author","tags","date"
 
 const initData = {

@@ -1,7 +1,6 @@
 'use strict';
 console.log('single.js file was loaded');
 
-const baseUrl = 'http://localhost:5000';
 let currentPostId = '5703187329379835';
 
 const els = {
